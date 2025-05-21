@@ -1,0 +1,15 @@
+**/bin
+**/obj
+**/.vs
+**/node_modules/
+**/.vscode
+**/*.user
+**/*.suo
+**/*.cache
+*.csproj.user
+**/*.dbmdl
+**/*.pdb
+**/*.mdb
+**/*.log
+**/*csproj.user
+**/appsettings*.json
