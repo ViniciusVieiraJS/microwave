@@ -1,0 +1,35 @@
+<div class="options">
+
+    <div *ngFor="let option of options">
+
+        <button (click)="onSelect(option)">
+            <div *ngIf="option.programName == 'Pipoca'">
+                <i class="hgi hgi-stroke hgi-popcorn"></i>
+            </div>
+            <div *ngIf="option.programName == 'Leite'">
+                <i class="hgi hgi-stroke hgi-milk-bottle"></i>
+            </div>
+            <div *ngIf="option.programName == 'Carnes de boi'">
+                <i class="hgi hgi-stroke hgi-steak"></i>
+            </div>
+            <div *ngIf="option.programName == 'Frango'">
+                <i class="hgi hgi-stroke hgi-chicken-thighs"></i>
+            </div>
+            <div *ngIf="option.programName == 'Feijão'">
+                <i class="hgi hgi-stroke hgi-coffee-beans"></i>
+            </div>
+            {{ option.programName }}
+            <span class="info-tooltip-wrapper">
+                <i class="fa-solid fa-circle-info"></i>
+                <span class="info-tooltip">
+                    <b>Alimento:</b> {{ option.food }}<br>
+                    <b>Tempo:</b> {{option.timeInSeconds}} segundos<br>
+                    <b>Potência:</b> {{ option.power }}<br>
+                    <b>Instruções:</b> {{ option.complementaryInformation }} <br>
+                    <b>Caractere de aquecimento:</b> {{ option.heatingString }}
+                </span>
+            </span>
+        </button>
+    </div>
+
+</div>

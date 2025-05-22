@@ -1,0 +1,53 @@
+.options {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 5px;
+    margin-bottom: 5px;
+
+     button {
+    width: 100%;
+    height: 50px;
+    font-size: small;
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    cursor: pointer;
+
+    button:hover{
+    background-color: #e0e0e0;
+  }
+
+    
+  }
+
+  .info-tooltip-wrapper {
+  position: relative;
+  display: inline-block;
+}
+
+
+
+.info-tooltip {
+  visibility: hidden;
+  background: #333;
+  color: #fff;
+  text-align: left;
+  border-radius: 4px;
+  padding: 8px 12px;
+  position: absolute;
+  top: 125%;         
+  left: 50%;
+  transform: translateX(-50%);
+  opacity: 0;
+  transition: opacity 0.2s;
+  width: 220px;
+  font-size: small;
+}
+
+.info-tooltip-wrapper:hover .info-tooltip {
+  visibility: visible;
+  opacity: 1;
+}
+
+ 
+
+  }
