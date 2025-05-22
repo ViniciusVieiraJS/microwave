@@ -18,6 +18,7 @@ inHeating: boolean = false;
 heatingString: string = '';
 heatingCharacter: string = '.'; 
 timeHasStarted: boolean = false;
+  isPaused: boolean = false;
 
   addDigit(digito: string): void {
     if (this.currentInput.length < 4) {
@@ -30,6 +31,21 @@ timeHasStarted: boolean = false;
   }
 
   startTime(): void {
+    if(this.isPaused) {
+      this.isPaused = false;
+      this.inHeating = true;
+      this.intervalId = setInterval(() => {
+        if (this.timeInSeconds > 0) {
+          this.timeInSeconds--;
+          this.heatingString += this.heatingCharacter.repeat(this.power) + ' ';
+        } else {
+          clearInterval(this.intervalId);
+          this.inHeating = false;
+          this.heatingString += 'Aquecimento concluído';
+        }
+      }, 1000);
+      return;
+    }
     debugger
     if(this.inHeating) {
       this.timeInSeconds += 30;
@@ -77,6 +93,32 @@ timeHasStarted: boolean = false;
 
   increasePower(): void {
     if (this.power < 10) this.power++;
+  }
+
+  pause(): void {
+    if(this.isPaused){
+      this.reset();
+      return;
+    }
+    if (this.inHeating) {
+      this.isPaused = true;
+      clearInterval(this.intervalId);
+      this.inHeating = false;
+    } else {
+      this.reset()
+    }
+  }
+
+  reset(): void {
+    this.currentInput = '';
+    this.formattedSeconds = '00:00';
+    this.timeInSeconds = 0;
+    this.power = 10;
+    this.inHeating = false;
+    this.heatingString = '';
+    this.timeHasStarted = false;
+    this.isPaused = false;
+    clearInterval(this.intervalId);
   }
 
   decreasePower(): void {
