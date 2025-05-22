@@ -35,6 +35,9 @@ timeHasStarted: boolean = false;
   }
 
   addDigit(digito: string): void {
+    if(this.fromPreDefinedProgram){
+      return;
+    }
     if (this.currentInput.length < 4) {
       this.currentInput += digito;  
      
