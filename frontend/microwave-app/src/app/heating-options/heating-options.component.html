@@ -1,0 +1,26 @@
+<div class="options">
+    
+<div *ngFor="let option of options">
+    
+  <button (click)="onSelect(option)">
+    <div *ngIf="option.programName == 'Pipoca'">
+        <i class="hgi hgi-stroke hgi-popcorn"></i>
+    </div>
+    <div *ngIf="option.programName == 'Leite'">
+        <i class="hgi hgi-stroke hgi-milk-bottle"></i>
+    </div>
+    <div *ngIf="option.programName == 'Carnes de boi'">
+        <i class="hgi hgi-stroke hgi-steak"></i>
+    </div>
+    <div *ngIf="option.programName == 'Frango'">
+        <i class="hgi hgi-stroke hgi-chicken-thighs"></i>
+    </div>
+    <div *ngIf="option.programName == 'Feijão'">
+        <i class="hgi hgi-stroke hgi-coffee-beans"></i>
+    </div>
+    {{ option.programName }}
+  </button>
+</div>
+
+</div>
+

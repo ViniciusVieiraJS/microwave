@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
+import { HeatingOption } from '../interfaces/heating-option';
 
 @Component({
   selector: 'app-microwave-keyboard',
@@ -19,6 +20,19 @@ heatingString: string = '';
 heatingCharacter: string = '.'; 
 timeHasStarted: boolean = false;
   isPaused: boolean = false;
+  fromPreDefinedProgram: boolean = false;
+
+   setProgram(option: HeatingOption) {
+    if(this.inHeating) {
+      alert('Aquecimento em andamento. Interrompa o aquecimento antes de selecionar um novo programa.');
+      return;
+    }
+    this.power = option.power;
+    this.heatingCharacter = option.heatingString;
+    this.timeInSeconds = option.timeInSeconds;
+    this.fromPreDefinedProgram = true;
+    this.formattedSeconds = this.formatTime();
+  }
 
   addDigit(digito: string): void {
     if (this.currentInput.length < 4) {
@@ -31,6 +45,9 @@ timeHasStarted: boolean = false;
   }
 
   startTime(): void {
+    if(this.fromPreDefinedProgram && this.timeHasStarted){
+      return;
+    }
     if(this.isPaused) {
       this.isPaused = false;
       this.inHeating = true;
@@ -65,6 +82,7 @@ timeHasStarted: boolean = false;
     console.log(this.timeInSeconds);
 
 
+    if(!this.fromPreDefinedProgram){
   if (this.timeInSeconds < 1 || this.timeInSeconds > 120) {
     alert('Informe um tempo entre 1 segundo e 2 minutos.');
     return;
@@ -74,6 +92,7 @@ timeHasStarted: boolean = false;
     alert('Potência deve ser entre 1 e 10.');
     return;
   }
+}
 
   this.inHeating = true;
   this.heatingString = '';
@@ -92,10 +111,12 @@ timeHasStarted: boolean = false;
 }
 
   increasePower(): void {
+    if(!this.fromPreDefinedProgram)
     if (this.power < 10) this.power++;
   }
 
   pause(): void {
+    debugger
     if(this.isPaused){
       this.reset();
       return;
@@ -105,23 +126,29 @@ timeHasStarted: boolean = false;
       clearInterval(this.intervalId);
       this.inHeating = false;
     } else {
+      if(this.fromPreDefinedProgram){
+        this.fromPreDefinedProgram = false;
+        this.reset();
+      }
       this.reset()
     }
   }
 
   reset(): void {
     this.currentInput = '';
-    this.formattedSeconds = '00:00';
+    this.formattedSeconds = '';
     this.timeInSeconds = 0;
     this.power = 10;
     this.inHeating = false;
     this.heatingString = '';
     this.timeHasStarted = false;
     this.isPaused = false;
+    this.fromPreDefinedProgram = false;
     clearInterval(this.intervalId);
   }
 
   decreasePower(): void {
+    if(!this.fromPreDefinedProgram)
     if (this.power > 1) this.power--;
   }
 
@@ -137,7 +164,7 @@ timeHasStarted: boolean = false;
   }
 
   formatTime(): string {
-    if(this.timeHasStarted){
+    if(this.timeHasStarted || this.fromPreDefinedProgram){
       const minutos = Math.floor(this.timeInSeconds / 60);
   const segundos = this.timeInSeconds % 60;
   return `${this.padZero(minutos)}:${this.padZero(segundos)}`;
@@ -158,6 +185,8 @@ timeHasStarted: boolean = false;
     this.formattedSeconds = this.currentInput.slice(0, 2) + ':' + this.currentInput.slice(2);
     return this.formattedSeconds;
   }
+
+
 
   padZero(n: number): string {
     if( n < 10){
