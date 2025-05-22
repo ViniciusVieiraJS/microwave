@@ -13,3 +13,4 @@
 **/*.log
 **/*csproj.user
 **/appsettings*.json
+**/.angular
