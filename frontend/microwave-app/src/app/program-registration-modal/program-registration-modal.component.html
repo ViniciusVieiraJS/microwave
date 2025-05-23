@@ -1,0 +1,32 @@
+<h2 mat-dialog-title>Cadastro de Programa</h2>
+<div mat-dialog-content>
+  <mat-form-field appearance="fill" class="w-full">
+    <mat-label>Nome do Programa</mat-label>
+    <input matInput [(ngModel)]="program.name" required />
+  </mat-form-field>
+
+  <mat-form-field appearance="fill" class="w-full">
+    <mat-label>Alimento</mat-label>
+    <input matInput [(ngModel)]="program.food" type="email" required />
+  </mat-form-field>
+    <mat-form-field appearance="fill" class="w-full">
+        <mat-label>Tempo em segundos</mat-label>
+        <input matInput [(ngModel)]="program.duration" type="number" required />
+    </mat-form-field>
+    <mat-form-field appearance="fill" class="w-full">
+        <mat-label>Potência</mat-label>
+        <input matInput [(ngModel)]="program.powerLevel" type="number" required />
+    </mat-form-field>
+    <mat-form-field appearance="fill" class="w-full">
+        <mat-label>Instruções</mat-label>
+        <input matInput [(ngModel)]="program.complementaryInformation" required />
+    </mat-form-field>
+    <mat-form-field appearance="fill" class="w-full">
+        <mat-label>Caractere de aquecimento</mat-label>
+        <input matInput [(ngModel)]="program.heatingCharacter" required />
+    </mat-form-field>
+</div>
+<div mat-dialog-actions align="end">
+  <button mat-button (click)="cancelar()">Cancelar</button>
+  <button mat-raised-button color="primary" (click)="cadastrar()">Cadastrar</button>
+</div>

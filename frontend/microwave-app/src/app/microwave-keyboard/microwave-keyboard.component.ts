@@ -27,9 +27,9 @@ timeHasStarted: boolean = false;
       alert('Aquecimento em andamento. Interrompa o aquecimento antes de selecionar um novo programa.');
       return;
     }
-    this.power = option.power;
-    this.heatingCharacter = option.heatingString;
-    this.timeInSeconds = option.timeInSeconds;
+    this.power = option.powerLevel;
+    this.heatingCharacter = option.heatingCharacter;
+    this.timeInSeconds = option.duration;
     this.fromPreDefinedProgram = true;
     this.formattedSeconds = this.formatTime();
   }

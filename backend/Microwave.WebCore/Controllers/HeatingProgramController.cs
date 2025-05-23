@@ -4,7 +4,7 @@ namespace Microwave.WebCore.Controllers
     using Microwave.Core.DTOs;
     using Microwave.Core.Services;
 
-    [Route("api/[controller]")]
+    [Route("api/heating-programs")]
     [ApiController]
     public class HeatingProgramController : ControllerBase
     {
