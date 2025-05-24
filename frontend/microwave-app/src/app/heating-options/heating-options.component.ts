@@ -24,7 +24,7 @@ export class HeatingOptionsComponent implements OnInit {
   ) { }
 
 
-  abrirModal() {
+  openModal() {
     const dialogRef = this.dialog.open(ProgramRegistrationModalComponent, {
       width: '400px',
       data: {

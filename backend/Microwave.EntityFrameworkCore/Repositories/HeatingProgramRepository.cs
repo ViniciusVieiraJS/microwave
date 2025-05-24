@@ -1,6 +1,8 @@
+using System.Net;
 using Microsoft.EntityFrameworkCore;
 using Microwave.Core;
 using Microwave.Core.DTOs;
+using Microwave.Core.Exceptions;
 using Microwave.Core.Interfaces.Repositories;
 using Microwave.Core.Models;
 
@@ -14,14 +16,9 @@ public class HeatingProgramRepository : IHeatingProgramRepository
         _context = context;
     }
 
-   
+
     public async Task<HeatingProgram> CreateHeatingProgramAsync(CreateHeatingProgramDTO heatingProgram)
     {
-        var existingHeatingProgram = await _context.HeatingPrograms.ToListAsync();
-        if (existingHeatingProgram.Any(h => h.HeatingCharacter == heatingProgram.HeatingCharacter))
-        {
-            throw new Exception("Heating program with the same heating character already exists.");
-        }
         var newHeatingProgram = new HeatingProgram
         {
             Name = heatingProgram.Name,
@@ -36,6 +33,11 @@ public class HeatingProgramRepository : IHeatingProgramRepository
         await _context.SaveChangesAsync();
 
         return newHeatingProgram;
+    }
+
+    public async Task<bool> HeatingCharacterExistsAsync(string heatingCharacter)
+    {
+        return await _context.HeatingPrograms.AnyAsync(h => h.HeatingCharacter == heatingCharacter);
     }
 
     public async Task<bool> DeleteHeatingProgramAsync(int id)

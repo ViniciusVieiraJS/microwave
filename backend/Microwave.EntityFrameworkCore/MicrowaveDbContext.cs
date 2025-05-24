@@ -17,6 +17,8 @@ namespace Microwave.Core
         }
 
         public DbSet<HeatingProgram> HeatingPrograms { get; set; } = null!;
+        public DbSet<Log> Logs { get; set; }
+
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

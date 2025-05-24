@@ -1,7 +1,10 @@
+using System.Linq.Expressions;
+
 namespace Microwave.WebCore.Controllers
 {
     using Microsoft.AspNetCore.Mvc;
     using Microwave.Core.DTOs;
+    using Microwave.Core.Exceptions;
     using Microwave.Core.Services;
 
     [Route("api/heating-programs")]
@@ -29,33 +32,47 @@ namespace Microwave.WebCore.Controllers
         [HttpGet("{id}")]
         public async Task<IActionResult> GetHeatingProgramById(int id)
         {
-            var heatingProgram = await _heatingProgramService.GetHeatingProgramByIdAsync(id);
-            if (heatingProgram == null)
+            try
             {
-                return NotFound();
+                var heatingProgram = await _heatingProgramService.GetHeatingProgramByIdAsync(id);
+                return Ok(heatingProgram);
             }
-            return Ok(heatingProgram);
+            catch (MicrowaveException ex)
+            {
+                return StatusCode((int)ex.StatusCode, ex.Message);
+            }
+          
         }
         [HttpPost]
         public async Task<IActionResult> CreateHeatingProgram([FromBody] CreateHeatingProgramDTO heatingProgram)
         {
-            if (heatingProgram == null)
+            try	
             {
-                return BadRequest();
+                var createdHeatingProgram = await _heatingProgramService.CreateHeatingProgramAsync(heatingProgram);
+                return CreatedAtAction(nameof(GetHeatingProgramById), new { id = createdHeatingProgram.Id }, createdHeatingProgram);
             }
-            var createdHeatingProgram = await _heatingProgramService.CreateHeatingProgramAsync(heatingProgram);
-            return CreatedAtAction(nameof(GetHeatingProgramById), new { id = createdHeatingProgram.Id }, createdHeatingProgram);
+            catch (MicrowaveException ex)
+            {
+                return StatusCode((int)ex.StatusCode, ex.Message);
+            }
+           
+        
+      
         }
 
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteHeatingProgram(int id)
         {
-            var deleted = await _heatingProgramService.DeleteHeatingProgramAsync(id);
-            if (!deleted)
+            try
             {
-                return NotFound();
-            }
+            await _heatingProgramService.DeleteHeatingProgramAsync(id);
             return NoContent();
+            }
+            catch (MicrowaveException ex)
+            {
+                return StatusCode((int)ex.StatusCode, ex.Message);
+            }
+           
         }
 
     }
