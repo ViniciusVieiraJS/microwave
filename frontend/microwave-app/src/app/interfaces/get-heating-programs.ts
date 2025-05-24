@@ -1,4 +1,5 @@
-export interface HeatingOption {
+export interface GetHeatingPrograms {
+    id: number;
     name: string;
     food: string;
     duration: number;

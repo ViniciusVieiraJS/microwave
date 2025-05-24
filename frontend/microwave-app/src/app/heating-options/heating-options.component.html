@@ -3,33 +3,59 @@
     <div *ngFor="let option of options">
 
         <button (click)="onSelect(option)">
-            <div *ngIf="option.programName == 'Pipoca'">
+            <div *ngIf="option.name == 'Pipoca'">
                 <i class="hgi hgi-stroke hgi-popcorn"></i>
             </div>
-            <div *ngIf="option.programName == 'Leite'">
+            <div *ngIf="option.name == 'Leite'">
                 <i class="hgi hgi-stroke hgi-milk-bottle"></i>
             </div>
-            <div *ngIf="option.programName == 'Carnes de boi'">
+            <div *ngIf="option.name == 'Carnes de boi'">
                 <i class="hgi hgi-stroke hgi-steak"></i>
             </div>
-            <div *ngIf="option.programName == 'Frango'">
+            <div *ngIf="option.name == 'Frango'">
                 <i class="hgi hgi-stroke hgi-chicken-thighs"></i>
             </div>
-            <div *ngIf="option.programName == 'Feijão'">
+            <div *ngIf="option.name == 'Feijão'">
                 <i class="hgi hgi-stroke hgi-coffee-beans"></i>
             </div>
-            {{ option.programName }}
+            {{ option.name }}
             <span class="info-tooltip-wrapper">
                 <i class="fa-solid fa-circle-info"></i>
                 <span class="info-tooltip">
                     <b>Alimento:</b> {{ option.food }}<br>
-                    <b>Tempo:</b> {{option.timeInSeconds}} segundos<br>
-                    <b>Potência:</b> {{ option.power }}<br>
+                    <b>Tempo:</b> {{option.duration}} segundos<br>
+                    <b>Potência:</b> {{ option.powerLevel }}<br>
                     <b>Instruções:</b> {{ option.complementaryInformation }} <br>
-                    <b>Caractere de aquecimento:</b> {{ option.heatingString }}
+                    <b>Caractere de aquecimento:</b> {{ option.heatingCharacter }}
                 </span>
             </span>
         </button>
     </div>
+    <div *ngFor="let createdOption of createdProgram">
+         <button (click)="onSelect(createdOption)">
+         <span style="font-style: italic;">{{ createdOption.name }}  
+         </span>
+            <span class="info-tooltip-wrapper" style="margin: 4px;">
+    
+                <i class="fa-solid fa-circle-info"></i>
+                <span class="info-tooltip">
+                    <b>Alimento:</b> {{ createdOption.food }}<br>
+                    <b>Tempo:</b> {{createdOption.duration}} segundos<br>
+                    <b>Potência:</b> {{ createdOption.powerLevel }}<br>
+                    <b>Instruções:</b> {{ createdOption.complementaryInformation }} <br>
+                    <b>Caractere de aquecimento:</b> {{ createdOption.heatingCharacter }}
+                </span>
+            </span>
+             <span class="info-tooltip-wrapper">
+            <i (click)="deleteOption(createdOption.id)" class="fa-solid fa-trash"></i>
+            <span class="info-tooltip">
+                    <p>Clique para deletar o programa</p>
+                </span>
+            </span>
+            </button>
+    </div>
+    <button mat-raised-button color="primary" (click)="openModal()">
+  Cadastrar
+</button>
 
 </div>

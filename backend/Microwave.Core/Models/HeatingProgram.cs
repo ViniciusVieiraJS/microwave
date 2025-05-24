@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Microwave.Core
+namespace Microwave.Core.Models
 {
     public class HeatingProgram
     {
@@ -12,8 +12,9 @@ namespace Microwave.Core
         public string Name { get; set; } = string.Empty;
         public string Food { get; set; } = string.Empty;
         public int PowerLevel { get; set; }
-        public int Duration { get; set; } 
+        public int Duration { get; set; }
         public string HeatingCharacter { get; set; } = string.Empty;
+        public string ComplementaryInformation { get; set; } = string.Empty;
 
 
     }

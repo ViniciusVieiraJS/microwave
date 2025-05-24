@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { HeatingOption } from '../interfaces/heating-option';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-microwave-keyboard',
@@ -21,15 +22,15 @@ heatingCharacter: string = '.';
 timeHasStarted: boolean = false;
   isPaused: boolean = false;
   fromPreDefinedProgram: boolean = false;
-
+constructor(private toastrService: ToastrService) {}
    setProgram(option: HeatingOption) {
     if(this.inHeating) {
-      alert('Aquecimento em andamento. Interrompa o aquecimento antes de selecionar um novo programa.');
+      this.toastrService.error('Aquecimento em andamento. Interrompa o aquecimento antes de selecionar um novo programa.');
       return;
     }
-    this.power = option.power;
-    this.heatingCharacter = option.heatingString;
-    this.timeInSeconds = option.timeInSeconds;
+    this.power = option.powerLevel;
+    this.heatingCharacter = option.heatingCharacter;
+    this.timeInSeconds = option.duration;
     this.fromPreDefinedProgram = true;
     this.formattedSeconds = this.formatTime();
   }
@@ -43,7 +44,7 @@ timeHasStarted: boolean = false;
      
     }
     else {
-      alert('Limite de 4 dígitos atingido');
+        this.toastrService.error('Limite de 4 dígitos atingido.');
     }
   }
 
@@ -87,12 +88,12 @@ timeHasStarted: boolean = false;
 
     if(!this.fromPreDefinedProgram){
   if (this.timeInSeconds < 1 || this.timeInSeconds > 120) {
-    alert('Informe um tempo entre 1 segundo e 2 minutos.');
+    this.toastrService.error('Tempo deve ser entre 1 e 120 segundos.');
     return;
   }
 
   if (this.power < 1 || this.power > 10) {
-    alert('Potência deve ser entre 1 e 10.');
+    this.toastrService.error('Potência deve ser entre 1 e 10.');
     return;
   }
 }
