@@ -26,14 +26,26 @@ public class HeatingProgramService : IHeatingProgramService
         return getHeatingProgram;
     }
 
-    public Task<bool> DeleteHeatingProgramAsync(int id)
+    public async Task<bool> DeleteHeatingProgramAsync(int id)
     {
-        throw new NotImplementedException();
+        var deleted = await _heatingProgramRepository.DeleteHeatingProgramAsync(id);
+        if (deleted == false)
+        {
+            throw new Exception("Failed to delete heating program");
+        }
+        return deleted;
     }
 
-    public Task<List<GetHeatingProgramDTO>> GetAllHeatingProgramsAsync()
+    public async Task<List<GetHeatingProgramDTO>> GetAllHeatingProgramsAsync()
     {
-        throw new NotImplementedException();
+        var heatingPrograms = await _heatingProgramRepository.GetAllHeatingProgramsAsync();
+        var getHeatingPrograms = new List<GetHeatingProgramDTO>();
+        foreach (var heatingProgram in heatingPrograms)
+        {
+            var getHeatingProgram = HeatingProgramMapper.MapToGetHeatingProgramDTO(heatingProgram);
+            getHeatingPrograms.Add(getHeatingProgram);
+        }
+        return getHeatingPrograms;
     }
 
     public async Task<GetHeatingProgramDTO> GetHeatingProgramByIdAsync(int id)

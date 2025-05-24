@@ -19,6 +19,10 @@ namespace Microwave.WebCore.Controllers
         public async Task<IActionResult> GetAllHeatingPrograms()
         {
             var heatingPrograms = await _heatingProgramService.GetAllHeatingProgramsAsync();
+            if (heatingPrograms == null || heatingPrograms.Count == 0)
+            {
+                return NoContent();
+            }
             return Ok(heatingPrograms);
         }
 
@@ -41,6 +45,17 @@ namespace Microwave.WebCore.Controllers
             }
             var createdHeatingProgram = await _heatingProgramService.CreateHeatingProgramAsync(heatingProgram);
             return CreatedAtAction(nameof(GetHeatingProgramById), new { id = createdHeatingProgram.Id }, createdHeatingProgram);
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteHeatingProgram(int id)
+        {
+            var deleted = await _heatingProgramService.DeleteHeatingProgramAsync(id);
+            if (!deleted)
+            {
+                return NotFound();
+            }
+            return NoContent();
         }
 
     }

@@ -31,8 +31,31 @@
             </span>
         </button>
     </div>
+    <div *ngFor="let createdOption of createdProgram">
+         <button (click)="onSelect(createdOption)">
+         <span style="font-style: italic;">{{ createdOption.name }}  
+         </span>
+            <span class="info-tooltip-wrapper" style="margin: 4px;">
+    
+                <i class="fa-solid fa-circle-info"></i>
+                <span class="info-tooltip">
+                    <b>Alimento:</b> {{ createdOption.food }}<br>
+                    <b>Tempo:</b> {{createdOption.duration}} segundos<br>
+                    <b>Potência:</b> {{ createdOption.powerLevel }}<br>
+                    <b>Instruções:</b> {{ createdOption.complementaryInformation }} <br>
+                    <b>Caractere de aquecimento:</b> {{ createdOption.heatingCharacter }}
+                </span>
+            </span>
+             <span class="info-tooltip-wrapper">
+            <i (click)="deleteOption(createdOption.id)" class="fa-solid fa-trash"></i>
+            <span class="info-tooltip">
+                    <p>Clique para deletar o programa</p>
+                </span>
+            </span>
+            </button>
+    </div>
     <button mat-raised-button color="primary" (click)="abrirModal()">
-  Abrir Cadastro
+  Cadastrar
 </button>
 
 </div>

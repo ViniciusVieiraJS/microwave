@@ -35,7 +35,8 @@
               "@angular/material/prebuilt-themes/azure-blue.css",
               "src/styles.scss",
               "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css",
-              "https://use.hugeicons.com/font/icons.css"
+              "https://use.hugeicons.com/font/icons.css",
+               "node_modules/ngx-toastr/toastr.css"
             ],
             "scripts": []
           },

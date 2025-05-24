@@ -4,9 +4,11 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { FormsModule } from '@angular/forms';
-import { HeatingOption } from '../interfaces/heating-option';
 import { HeatingProgramService } from '../services/heating-program.service';
 import { CreateHeatingProgram } from '../interfaces/create-heating-program';
+import { ToastrService } from 'ngx-toastr';
+import { GetHeatingPrograms } from '../interfaces/get-heating-programs';
+
 @Component({
   selector: 'app-program-registration-modal',
   standalone: true,
@@ -23,25 +25,42 @@ export class ProgramRegistrationModalComponent {
     heatingCharacter: '',
     complementaryInformation: ''
   };
-
+usedHeatingCharacters: string[] = ['.', '*', '}', '#', '|', '=']
   constructor(
     public dialogRef: MatDialogRef<ProgramRegistrationModalComponent>,
     private heatingProgramService: HeatingProgramService,
+    private toastrService: ToastrService,
+
     @Inject(MAT_DIALOG_DATA) public data: any
-  ) {}
+  ) {
+    data.createdProgram.map((program: GetHeatingPrograms) => {
+      this.usedHeatingCharacters.push(program.heatingCharacter);
+    });
+  }
 
   cadastrar() {
+    if(this.program.name === '' || this.program.food === '' || this.program.duration <= 0 || this.program.powerLevel <= 0 || this.program.heatingCharacter === '') {
+      this.toastrService.error('Preencha todos os campos corretamente.');
+      return;
+    }
+    if(this.usedHeatingCharacters.includes(this.program.heatingCharacter)) {
+      this.toastrService.error('Esse caractere já está em uso. Escolha outro.');
+      return;
+    }
+
     console.log('Dados do programa:', this.program);
     this.heatingProgramService.createProgram(this.program).subscribe(
-      (response) => {
-        console.log('Programa criado com sucesso:', response);
+      (response: CreateHeatingProgram) => {
+        this.toastrService.success(`Programa ${response.name} criado com sucesso!`);
+        this.dialogRef.close(this.program);
       },
-      (error) => {
+      (error: any) => {
         console.error('Erro ao criar o programa:', error);
+        this.dialogRef.close(this.program);
       }
     );
 
-    this.dialogRef.close(this.program);
+   
    
     
   }
