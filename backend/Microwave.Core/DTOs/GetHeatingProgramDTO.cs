@@ -8,5 +8,6 @@ namespace Microwave.Core.DTOs
         public int PowerLevel { get; set; }
         public int Duration { get; set; }
         public string HeatingCharacter { get; set; } = string.Empty;
+        public string ComplementaryInformation { get; set; } = string.Empty;
     }
 }

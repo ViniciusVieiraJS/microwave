@@ -17,13 +17,19 @@ public class HeatingProgramRepository : IHeatingProgramRepository
    
     public async Task<HeatingProgram> CreateHeatingProgramAsync(CreateHeatingProgramDTO heatingProgram)
     {
+        var existingHeatingProgram = await _context.HeatingPrograms.ToListAsync();
+        if (existingHeatingProgram.Any(h => h.HeatingCharacter == heatingProgram.HeatingCharacter))
+        {
+            throw new Exception("Heating program with the same heating character already exists.");
+        }
         var newHeatingProgram = new HeatingProgram
         {
             Name = heatingProgram.Name,
             Food = heatingProgram.Food,
             PowerLevel = heatingProgram.PowerLevel,
             Duration = heatingProgram.Duration,
-            HeatingCharacter = heatingProgram.HeatingCharacter
+            HeatingCharacter = heatingProgram.HeatingCharacter,
+            ComplementaryInformation = heatingProgram.ComplementaryInformation
         };
 
         await _context.HeatingPrograms.AddAsync(newHeatingProgram);
@@ -32,14 +38,23 @@ public class HeatingProgramRepository : IHeatingProgramRepository
         return newHeatingProgram;
     }
 
-    public Task<bool> DeleteHeatingProgramAsync(int id)
+    public async Task<bool> DeleteHeatingProgramAsync(int id)
     {
-        throw new NotImplementedException();
+        var heatingProgram = await _context.HeatingPrograms.FirstOrDefaultAsync(h => h.Id == id);
+        if (heatingProgram == null)
+        {
+            return false;
+        }
+
+        _context.HeatingPrograms.Remove(heatingProgram);
+        await _context.SaveChangesAsync();
+        return true;
     }
 
     public Task<List<HeatingProgram>> GetAllHeatingProgramsAsync()
     {
-        throw new NotImplementedException();
+        var heatingPrograms = _context.HeatingPrograms.ToListAsync();
+        return heatingPrograms;
     }
 
     public async Task<HeatingProgram> GetHeatingProgramByIdAsync(int id)

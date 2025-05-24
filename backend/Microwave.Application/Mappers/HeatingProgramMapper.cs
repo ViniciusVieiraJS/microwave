@@ -18,7 +18,8 @@ public class HeatingProgramMapper
             Food = heatingProgram.Food,
             PowerLevel = heatingProgram.PowerLevel,
             Duration = heatingProgram.Duration,
-            HeatingCharacter = heatingProgram.HeatingCharacter
+            HeatingCharacter = heatingProgram.HeatingCharacter,
+            ComplementaryInformation = heatingProgram.ComplementaryInformation
         };
     }
 
@@ -34,7 +35,9 @@ public class HeatingProgramMapper
             Food = createHeatingProgramDTO.Food,
             PowerLevel = createHeatingProgramDTO.PowerLevel,
             Duration = createHeatingProgramDTO.Duration,
-            HeatingCharacter = createHeatingProgramDTO.HeatingCharacter
+            HeatingCharacter = createHeatingProgramDTO.HeatingCharacter,
+            ComplementaryInformation = createHeatingProgramDTO.ComplementaryInformation
+
         };
     }
 }
