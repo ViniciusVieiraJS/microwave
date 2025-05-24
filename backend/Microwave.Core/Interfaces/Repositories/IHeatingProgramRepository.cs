@@ -10,5 +10,6 @@ namespace Microwave.Core.Interfaces.Repositories
         Task<HeatingProgram> CreateHeatingProgramAsync(CreateHeatingProgramDTO heatingProgram);
         Task<bool> UpdateHeatingProgramAsync(int id, CreateHeatingProgramDTO heatingProgram);
         Task<bool> DeleteHeatingProgramAsync(int id);
+        Task<bool> HeatingCharacterExistsAsync(string heatingCharacter);
     }
 }

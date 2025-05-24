@@ -1,5 +1,7 @@
+using System.Net;
 using Microwave.Application.Mappers;
 using Microwave.Core.DTOs;
+using Microwave.Core.Exceptions;
 using Microwave.Core.Interfaces.Repositories;
 using Microwave.Core.Services;
 
@@ -17,11 +19,14 @@ public class HeatingProgramService : IHeatingProgramService
 
     public async Task<GetHeatingProgramDTO> CreateHeatingProgramAsync(CreateHeatingProgramDTO heatingProgram)
     {
-        var createdHeatingProgram = await _heatingProgramRepository.CreateHeatingProgramAsync(heatingProgram);
-        if (createdHeatingProgram == null)
+        var heatingCharacterExists = await _heatingProgramRepository.HeatingCharacterExistsAsync(heatingProgram.HeatingCharacter);
+        if (heatingCharacterExists)
         {
-            throw new Exception("Failed to create heating program");
+            throw new MicrowaveException("Heating character already exists", HttpStatusCode.Conflict);
         }
+        
+        var createdHeatingProgram = await _heatingProgramRepository.CreateHeatingProgramAsync(heatingProgram);
+       
         var getHeatingProgram = HeatingProgramMapper.MapToGetHeatingProgramDTO(createdHeatingProgram);
         return getHeatingProgram;
     }
@@ -31,7 +36,7 @@ public class HeatingProgramService : IHeatingProgramService
         var deleted = await _heatingProgramRepository.DeleteHeatingProgramAsync(id);
         if (deleted == false)
         {
-            throw new Exception("Failed to delete heating program");
+            throw new MicrowaveException("Failed to delete heating program", HttpStatusCode.NotFound);
         }
         return deleted;
     }
@@ -51,6 +56,10 @@ public class HeatingProgramService : IHeatingProgramService
     public async Task<GetHeatingProgramDTO> GetHeatingProgramByIdAsync(int id)
     {
         var heatingProgram = await _heatingProgramRepository.GetHeatingProgramByIdAsync(id);
+        if (heatingProgram == null)
+        {
+            throw new MicrowaveException("Heating program not found", HttpStatusCode.NotFound);
+        }
 
         var getHeatingProgram = HeatingProgramMapper.MapToGetHeatingProgramDTO(heatingProgram);
 
