@@ -38,7 +38,7 @@ usedHeatingCharacters: string[] = ['.', '*', '}', '#', '|', '=']
     });
   }
 
-  cadastrar() {
+  register() {
     if(this.program.name === '' || this.program.food === '' || this.program.duration <= 0 || this.program.powerLevel <= 0 || this.program.heatingCharacter === '') {
       this.toastrService.error('Preencha todos os campos corretamente.');
       return;
@@ -48,14 +48,12 @@ usedHeatingCharacters: string[] = ['.', '*', '}', '#', '|', '=']
       return;
     }
 
-    console.log('Dados do programa:', this.program);
     this.heatingProgramService.createProgram(this.program).subscribe(
       (response: CreateHeatingProgram) => {
         this.toastrService.success(`Programa ${response.name} criado com sucesso!`);
         this.dialogRef.close(this.program);
       },
       (error: any) => {
-        console.error('Erro ao criar o programa:', error);
         this.dialogRef.close(this.program);
       }
     );
@@ -65,7 +63,7 @@ usedHeatingCharacters: string[] = ['.', '*', '}', '#', '|', '=']
     
   }
 
-  cancelar() {
+  cancel() {
     this.dialogRef.close();
   }
 }
