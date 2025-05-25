@@ -12,5 +12,5 @@
 **/*.mdb
 **/*.log
 **/*csproj.user
-**/appsettings*.json
+**/appsettings.Development*.json
 **/.angular

@@ -67,16 +67,21 @@ O projeto segue uma **arquitetura em camadas**, promovendo **separação de resp
 1. **Clone o repositório**
    ```bash
    git clone https://github.com/ViniciusVieiraJS/microwave.git
-   cd microwave-project/backend
+   cd microwave/backend
    ```
 
 2. **Configure a connection string**
    - Abra o arquivo `appsettings.json`
-   - A connection string está criptografada por segurança.
+   - Este projeto utiliza User Secrets para esconder a ConnectionString e a JwtKey do banco de dados durante o desenvolvimento local.
    - String descriptografada (banco local):
      ```
      Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=MicrowaveDB;Integrated Security=True
      ```
+   - JwtKey:
+      ```
+      b7f3e8c2a1d4f6e9b0c5a2e7d8f1c3b6a4e9d2c7b1f5e3a8c6d0b2f4e7a1c9d3
+      ```
+
 
 3. **Execute as migrações**
    -Dentro do diretório raiz do backend, execute o seguinte comando:
@@ -96,7 +101,7 @@ O projeto segue uma **arquitetura em camadas**, promovendo **separação de resp
 
 1. **Instale as dependências**
    ```bash
-   cd microwave-project/frontend
+   cd microwave/frontend
    npm install
    ```
 
