@@ -1,7 +1,6 @@
-using System.Linq.Expressions;
-
 namespace Microwave.WebCore.Controllers
 {
+    using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
     using Microwave.Core.DTOs;
     using Microwave.Core.Exceptions;
@@ -9,6 +8,7 @@ namespace Microwave.WebCore.Controllers
 
     [Route("api/heating-programs")]
     [ApiController]
+    [Authorize]
     public class HeatingProgramController : ControllerBase
     {
         private readonly IHeatingProgramService _heatingProgramService;
@@ -41,12 +41,12 @@ namespace Microwave.WebCore.Controllers
             {
                 return StatusCode((int)ex.StatusCode, ex.Message);
             }
-          
+
         }
         [HttpPost]
         public async Task<IActionResult> CreateHeatingProgram([FromBody] CreateHeatingProgramDTO heatingProgram)
         {
-            try	
+            try
             {
                 var createdHeatingProgram = await _heatingProgramService.CreateHeatingProgramAsync(heatingProgram);
                 return CreatedAtAction(nameof(GetHeatingProgramById), new { id = createdHeatingProgram.Id }, createdHeatingProgram);
@@ -55,9 +55,9 @@ namespace Microwave.WebCore.Controllers
             {
                 return StatusCode((int)ex.StatusCode, ex.Message);
             }
-           
-        
-      
+
+
+
         }
 
         [HttpDelete("{id}")]
@@ -65,14 +65,14 @@ namespace Microwave.WebCore.Controllers
         {
             try
             {
-            await _heatingProgramService.DeleteHeatingProgramAsync(id);
-            return NoContent();
+                await _heatingProgramService.DeleteHeatingProgramAsync(id);
+                return NoContent();
             }
             catch (MicrowaveException ex)
             {
                 return StatusCode((int)ex.StatusCode, ex.Message);
             }
-           
+
         }
 
     }

@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { HeatingOption } from '../interfaces/heating-option';
 import { ToastrService } from 'ngx-toastr';
+import { LoginService } from '../services/login.service';
 
 @Component({
   selector: 'app-microwave-keyboard',
@@ -22,8 +23,12 @@ heatingCharacter: string = '.';
 timeHasStarted: boolean = false;
   isPaused: boolean = false;
   fromPreDefinedProgram: boolean = false;
-constructor(private toastrService: ToastrService) {}
+constructor(private toastrService: ToastrService, private auth: LoginService) {}
    setProgram(option: HeatingOption) {
+    if(!this.auth.isAuthenticated()){
+      this.toastrService.error('Você não está autenticado. Faça login para usar o micro-ondas.');
+      return;
+    }
     if(this.inHeating) {
       this.toastrService.error('Aquecimento em andamento. Interrompa o aquecimento antes de selecionar um novo programa.');
       return;
@@ -36,6 +41,10 @@ constructor(private toastrService: ToastrService) {}
   }
 
   addDigit(digito: string): void {
+    if(!this.auth.isAuthenticated()){
+      this.toastrService.error('Você não está autenticado. Faça login para usar o micro-ondas.');
+      return;
+    }
     if(this.fromPreDefinedProgram){
       return;
     }
@@ -49,6 +58,10 @@ constructor(private toastrService: ToastrService) {}
   }
 
   startTime(): void {
+    if(!this.auth.isAuthenticated()){
+      this.toastrService.error('Você não está autenticado. Faça login para usar o micro-ondas.');
+      return;
+    }
     if(this.fromPreDefinedProgram && this.timeHasStarted){
       return;
     }
@@ -115,11 +128,19 @@ constructor(private toastrService: ToastrService) {}
 }
 
   increasePower(): void {
+    if(!this.auth.isAuthenticated()){
+      this.toastrService.error('Você não está autenticado. Faça login para usar o micro-ondas.');
+      return;
+    }
     if(!this.fromPreDefinedProgram)
     if (this.power < 10) this.power++;
   }
 
   pause(): void {
+    if(!this.auth.isAuthenticated()){
+      this.toastrService.error('Você não está autenticado. Faça login para usar o micro-ondas.');
+      return;
+    }
     debugger
     if(this.isPaused){
       this.reset();
@@ -139,6 +160,10 @@ constructor(private toastrService: ToastrService) {}
   }
 
   reset(): void {
+    if(!this.auth.isAuthenticated()){
+      this.toastrService.error('Você não está autenticado. Faça login para usar o micro-ondas.');
+      return;
+    }
     this.currentInput = '';
     this.formattedSeconds = '';
     this.timeInSeconds = 0;
@@ -152,15 +177,27 @@ constructor(private toastrService: ToastrService) {}
   }
 
   decreasePower(): void {
+    if(!this.auth.isAuthenticated()){
+      this.toastrService.error('Você não está autenticado. Faça login para usar o micro-ondas.');
+      return;
+    }
     if(!this.fromPreDefinedProgram)
     if (this.power > 1) this.power--;
   }
 
   clear(): void {
+    if(!this.auth.isAuthenticated()){
+      this.toastrService.error('Você não está autenticado. Faça login para usar o micro-ondas.');
+      return;
+    }
     this.currentInput = '';
   }
 
   fastStart(): void {
+    if(!this.auth.isAuthenticated()){
+      this.toastrService.error('Você não está autenticado. Faça login para usar o micro-ondas.');
+      return;
+    }
     debugger
     this.currentInput = '0030';
     this.formattedSeconds = this.formatTime();

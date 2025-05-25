@@ -1,0 +1,16 @@
+<nav class="navbar">
+    <div class="navbar-container">
+        <div *ngIf="isAuthenticated; else notAuthenticated">
+            Olá, {{ user }}!
+            <button mat-icon-button (click)="logout()">
+                <mat-icon>logout</mat-icon>
+            </button>
+        </div>
+        
+        <ng-template #notAuthenticated>
+            <button class="login-btn" mat-icon-button (click)="login()">
+                Login
+            </button>
+        </ng-template>
+    </div>
+</nav>

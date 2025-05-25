@@ -1,0 +1,8 @@
+<app-navbar></app-navbar>
+<div style="display: flex; flex-direction: row; height: 100vh;">
+    <div style="flex: 7;">
+<app-microwave-keyboard #keyboard></app-microwave-keyboard>    </div>
+    <div style="flex: 3;">
+<app-heating-options (selectOption)="onProgramSelected($event)"></app-heating-options>
+    </div>
+</div>
