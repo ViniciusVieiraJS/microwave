@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Microwave.Core;
 
@@ -11,9 +12,11 @@ using Microwave.Core;
 namespace Microwave.EntityFrameworkCore.Migrations
 {
     [DbContext(typeof(MicrowaveDbContext))]
-    partial class MicrowaveDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250525203420_AddMicrowaveEntity")]
+    partial class AddMicrowaveEntity
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -123,6 +126,9 @@ namespace Microwave.EntityFrameworkCore.Migrations
                     b.Property<string>("CurrentInput")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Duration")
+                        .HasColumnType("int");
 
                     b.Property<string>("FormattedSeconds")
                         .IsRequired()

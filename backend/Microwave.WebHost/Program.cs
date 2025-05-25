@@ -58,6 +58,8 @@ builder.Services.AddDbContext<MicrowaveDbContext>(options =>
 
     builder.Services.AddScoped<IHeatingProgramRepository, HeatingProgramRepository>();
 builder.Services.AddScoped<IHeatingProgramService, HeatingProgramService>();
+builder.Services.AddScoped<IMicrowaveHeatingRepository, MicrowaveHeatingRepository>();
+builder.Services.AddScoped<IMicrowaveHeatingService, MicrowaveHeatingService>();
 builder.Configuration.SetBasePath(AppContext.BaseDirectory).AddJsonFile("appsettings.json", optional: true, reloadOnChange: true).AddUserSecrets<Program>().AddEnvironmentVariables();
 builder.Services.AddSwaggerGen(c =>
 {

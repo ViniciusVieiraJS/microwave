@@ -1,18 +1,15 @@
 <div class="keyboard-container">
   <h2>Micro-ondas Digital</h2>
 
- 
   <div class="display">
     <label>Tempo (mm:ss):</label>
     <input type="text" [value]="formatTime()" readonly />
   </div>
 
- 
   <div class="display">
     <label>Potência (1-10):</label>
-    <input type="text" [value]="power" readonly />
+    <input type="text" [value]="microwaveHeating.powerLevel" readonly />
   </div>
-
 
   <div class="keyboard">
     <button *ngFor="let n of numbers" (click)="addDigit(n.toString())">{{n}}</button>
@@ -20,18 +17,17 @@
     <button (click)="clear()">Limpar</button>
   </div>
 
- 
   <div class="actions">
     <button (click)="increasePower()">+ Potência</button>
     <button (click)="decreasePower()">- Potência</button>
   </div>
   <div>
-  <p>Tempo restante: {{ formatTime() }}</p>
-  <p>Potência: {{ power }}</p>
-  <p>Status: {{ inHeating ? 'Aquecendo...' : 'Parado' }}</p>
-  <p>{{ heatingString }}</p>
-  <button (click)="startTime()">Iniciar</button>
-  <button (click)="fastStart()">Início Rápido</button>
-  <button (click)="pause()">Pausar/Cancelar</button>
-</div>
+    <p>Tempo restante: {{ formatTime() }}</p>
+    <p>Potência: {{ microwaveHeating.powerLevel }}</p>
+    <p>Status: {{ microwaveHeating.inHeating ? 'Aquecendo...' : 'Parado' }}</p>
+    <p>{{ microwaveHeating.heatingString }}</p>
+    <button (click)="startTime()">Iniciar</button>
+    <button (click)="fastStart()">Início Rápido</button>
+    <button (click)="pause()">Pausar/Cancelar</button>
+  </div>
 </div>
