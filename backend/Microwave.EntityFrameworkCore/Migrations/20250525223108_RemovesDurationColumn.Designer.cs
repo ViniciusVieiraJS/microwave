@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Microwave.Core;
 
@@ -11,9 +12,11 @@ using Microwave.Core;
 namespace Microwave.EntityFrameworkCore.Migrations
 {
     [DbContext(typeof(MicrowaveDbContext))]
-    partial class MicrowaveDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250525223108_RemovesDurationColumn")]
+    partial class RemovesDurationColumn
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
