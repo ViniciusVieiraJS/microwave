@@ -66,7 +66,7 @@ O projeto segue uma **arquitetura em camadas**, promovendo **separação de resp
 
 1. **Clone o repositório**
    ```bash
-   git clone https://github.com/seu-usuario/microwave-project.git
+   git clone https://github.com/ViniciusVieiraJS/microwave.git
    cd microwave-project/backend
    ```
 
