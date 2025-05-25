@@ -30,6 +30,7 @@ export class LoginService {
 
   logout(): void {
     sessionStorage.removeItem('authToken');
+    sessionStorage.removeItem('user');
     this.router.navigate(['/login']);
   }
 

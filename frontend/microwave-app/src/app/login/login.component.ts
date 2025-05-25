@@ -21,6 +21,7 @@ constructor(private auth: LoginService, private router: Router, private toastr: 
       next: (response) => {
         this.toastr.success('Login realizado com sucesso!');
         const token = response.token;
+        sessionStorage.setItem('user', this.username);
         this.auth.saveToken(token);
         this.router.navigate(['']);
       },

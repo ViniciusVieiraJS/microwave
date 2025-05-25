@@ -3,10 +3,11 @@ import { Component, ViewChild } from '@angular/core';
 import { MicrowaveKeyboardComponent } from '../microwave-keyboard/microwave-keyboard.component';
 import { HeatingOptionsComponent } from '../heating-options/heating-options.component';
 import { HeatingOption } from '../interfaces/heating-option';
+import { NavbarComponent } from '../navbar/navbar.component';
 
 @Component({
   selector: 'app-home',
-  imports: [CommonModule, MicrowaveKeyboardComponent, HeatingOptionsComponent],
+  imports: [CommonModule, MicrowaveKeyboardComponent, HeatingOptionsComponent, NavbarComponent],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
 })
