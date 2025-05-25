@@ -6,6 +6,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { HeatingProgramService } from '../services/heating-program.service';
 import { GetHeatingPrograms } from '../interfaces/get-heating-programs';
 import { ToastrService } from 'ngx-toastr';
+import { LoginService } from '../services/login.service';
 @Component({
   selector: 'app-heating-options',
   imports: [CommonModule, ProgramRegistrationModalComponent],
@@ -20,11 +21,16 @@ export class HeatingOptionsComponent implements OnInit {
   constructor(private dialog: MatDialog,
     private heatingProgramService: HeatingProgramService,
     private toastrService: ToastrService,
-    private cdr: ChangeDetectorRef
+    private cdr: ChangeDetectorRef,
+    private auth: LoginService
   ) { }
 
 
   openModal() {
+    if(!this.auth.isAuthenticated()){
+      this.toastrService.error('Você não está autenticado. Faça login para usar o micro-ondas.');
+      return;
+    }
     const dialogRef = this.dialog.open(ProgramRegistrationModalComponent, {
       width: '400px',
       data: {
