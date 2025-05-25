@@ -23,13 +23,13 @@ Este projeto implementa um **simulador completo de micro-ondas digital**, com **
 
 ## 🚀 Tecnologias
 
-### 🔙 Backend
+## 🔙 Backend
 - [.NET 8 (ASP.NET Core)](https://dotnet.microsoft.com/)
 - [Entity Framework Core](https://learn.microsoft.com/en-us/ef/core/)
 - [SQL Server](https://www.microsoft.com/sql-server/)
 - JWT Authentication
 
-### 🌐 Frontend
+## 🌐 Frontend
 - [Angular 17](https://angular.io/)
 - TypeScript
 - SCSS
