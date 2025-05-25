@@ -180,8 +180,4 @@ O sistema utiliza **JWT (JSON Web Tokens)** para autenticação segura:
 
 ## 👤 Autor
 
-<<<<<<< HEAD
 Desenvolvido por **Silvyo Vieira**.
-=======
-Desenvolvido por **Silvyo Vieira** como parte do **Desafio Benner**.
->>>>>>> ae451cafc074cec94ba7163ea21c8ebb00bfaa45
