@@ -10,8 +10,8 @@ Este projeto implementa um **simulador completo de micro-ondas digital**, com **
 - [🏗 Arquitetura](#-arquitetura)
 - [📋 Requisitos](#-requisitos)
 - [🔧 Instalação](#-instalação)
-  - [Backend](#backend)
-  - [Frontend](#frontend)
+- [🔙 Backend](#backend)
+- [🌐 Frontend](#frontend)
 - [🖥 Uso](#-uso)
 - [🔐 Autenticação](#-autenticação)
 - [📡 API Endpoints](#-api-endpoints)
@@ -24,7 +24,7 @@ Este projeto implementa um **simulador completo de micro-ondas digital**, com **
 ## 🚀 Tecnologias
 
 ## 🔙 Backend
-- [.NET 8 (ASP.NET Core)](https://dotnet.microsoft.com/)
+- [.NET 9 (ASP.NET Core)](https://dotnet.microsoft.com/)
 - [Entity Framework Core](https://learn.microsoft.com/en-us/ef/core/)
 - [SQL Server](https://www.microsoft.com/sql-server/)
 - JWT Authentication
@@ -52,7 +52,7 @@ O projeto segue uma **arquitetura em camadas**, promovendo **separação de resp
 
 ## 📋 Requisitos
 
-- [.NET SDK 8.0+](https://dotnet.microsoft.com/en-us/download/dotnet/8.0)
+- [.NET SDK 9.0](https://dotnet.microsoft.com/en-us/download/dotnet/9.0)
 - [Node.js 18+](https://nodejs.org/)
 - Angular CLI 17+
 - SQL Server (LocalDB ou instância completa)
@@ -75,13 +75,15 @@ O projeto segue uma **arquitetura em camadas**, promovendo **separação de resp
    - Este projeto utiliza User Secrets para esconder a ConnectionString e a JwtKey do banco de dados durante o desenvolvimento local.
    - String descriptografada (banco local):
      ```
-     Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=MicrowaveDB;Integrated Security=True
+     Server=localhost;Database=Microwave;Trusted_Connection=True;TrustServerCertificate=True;
      ```
    - JwtKey:
       ```
       b7f3e8c2a1d4f6e9b0c5a2e7d8f1c3b6a4e9d2c7b1f5e3a8c6d0b2f4e7a1c9d3
       ```
 
+# Caso não esteja utilizando Visual Studio, é necessário baixar SQL Server Express caso deseje rodar localmente
+   -Download: https://learn.microsoft.com/pt-br/sql/database-engine/configure-windows/sql-server-express-localdb?view=sql-server-ver17
 
 3. **Execute as migrações**
    -Dentro do diretório raiz do backend, execute o seguinte comando:
@@ -103,6 +105,7 @@ O projeto segue uma **arquitetura em camadas**, promovendo **separação de resp
    ```bash
    cd microwave/frontend
    npm install
+   npm install -g @angular/cli
    ```
 
 2. **Inicie o servidor Angular**
