@@ -86,8 +86,11 @@ O projeto segue uma **arquitetura em camadas**, promovendo **separação de resp
    -Download: https://learn.microsoft.com/pt-br/sql/database-engine/configure-windows/sql-server-express-localdb?view=sql-server-ver17
 
 3. **Execute as migrações**
-   -Dentro do diretório raiz do backend, execute o seguinte comando:
+   -Dentro do diretório raiz do backend, execute os seguintes comandos:
+
    ```bash
+   dotnet tool install --global dotnet-ef
+
    dotnet ef database update --project Microwave.EntityFrameworkCore --startup-project Microwave.WebHost
    ```
 
