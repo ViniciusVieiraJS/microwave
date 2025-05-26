@@ -1,0 +1,17 @@
+<div class="register-container">
+  <div class="register-content">
+    <img src="" alt="">
+    <form class="register-form" (ngSubmit)="register()">
+      <h1>Bem-vindo ao aplicativo de micro-ondas</h1>
+      <h2>Cadastre-se</h2>
+      <input type="text" [(ngModel)]="username" name="username" placeholder="Usuário" required />
+      <input type="password" [(ngModel)]="password" name="password" placeholder="Senha" required />
+      <button type="submit">Cadastrar</button>
+    </form>
+  </div>
+
+
+  <div class="microwave-logo">
+    <img src="microwave.png" alt="">
+  </div>
+</div>

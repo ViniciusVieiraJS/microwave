@@ -1,0 +1,6 @@
+@Microwave.WebHost_HostAddress = http://localhost:5204
+
+GET {{Microwave.WebHost_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
