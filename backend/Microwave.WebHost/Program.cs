@@ -54,7 +54,6 @@ builder.Configuration.AddUserSecrets<Program>();
 builder.Services.AddDbContext<MicrowaveDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
-    Console.WriteLine("Connection string: " + builder.Configuration.GetConnectionString("DefaultConnection"));
 
     builder.Services.AddScoped<IHeatingProgramRepository, HeatingProgramRepository>();
 builder.Services.AddScoped<IHeatingProgramService, HeatingProgramService>();
