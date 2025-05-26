@@ -75,7 +75,7 @@ O projeto segue uma **arquitetura em camadas**, promovendo **separação de resp
    - Este projeto utiliza User Secrets para esconder a ConnectionString e a JwtKey do banco de dados durante o desenvolvimento local.
    - String descriptografada (banco local):
      ```
-     Server=localhost\SQLEXPRESS;Database=Microwave;Trusted_Connection=True;TrustServerCertificate=True;
+     Server=localhost\\SQLEXPRESS;Database=Microwave;Trusted_Connection=True;TrustServerCertificate=True;
      ```
    - JwtKey:
       ```
