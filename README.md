@@ -1,6 +1,6 @@
 # 🔥 Microwave Project - Simulador de Micro-ondas Digital
 
-Este projeto implementa um **simulador completo de micro-ondas digital**, com **interface web responsiva** e **API RESTful segura**. O sistema permite configurar e executar programas de aquecimento, com autenticação JWT e gerenciamento de receitas personalizadas.
+Este projeto implementa um **simulador completo de micro-ondas digital**, com **interface web** e **API RESTful segura**. O sistema permite configurar e executar programas de aquecimento, com autenticação JWT e gerenciamento de receitas personalizadas.
 
 ---
 
