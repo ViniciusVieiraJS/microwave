@@ -52,7 +52,8 @@ namespace Microwave.WebCore.Controllers
                 return BadRequest("Nome de usuário já existe");
             }
 
-            return Ok("Usuário registrado com sucesso");
+            return Ok(new { message = "Usuário registrado com sucesso" });
+
         }
     }
 }
