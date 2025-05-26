@@ -75,7 +75,7 @@ O projeto segue uma **arquitetura em camadas**, promovendo **separação de resp
    - Este projeto utiliza User Secrets para esconder a ConnectionString e a JwtKey do banco de dados durante o desenvolvimento local.
    - String descriptografada (banco local):
      ```
-     Server=localhost;Database=Microwave;Trusted_Connection=True;TrustServerCertificate=True;
+     Server=localhost\SQLEXPRESS;Database=Microwave;Trusted_Connection=True;TrustServerCertificate=True;
      ```
    - JwtKey:
       ```
@@ -83,7 +83,7 @@ O projeto segue uma **arquitetura em camadas**, promovendo **separação de resp
       ```
 
 # Caso não esteja utilizando Visual Studio, é necessário baixar SQL Server Express caso deseje rodar localmente
-   -Download: https://learn.microsoft.com/pt-br/sql/database-engine/configure-windows/sql-server-express-localdb?view=sql-server-ver17
+   -Download: https://www.microsoft.com/pt-br/download/details.aspx?id=104781
 
 3. **Execute as migrações**
    -Dentro do diretório raiz do backend, execute os seguintes comandos:
