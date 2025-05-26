@@ -30,7 +30,7 @@ Este projeto implementa um **simulador completo de micro-ondas digital**, com **
 - JWT Authentication
 
 ## 🌐 Frontend
-- [Angular 17](https://angular.io/)
+- [Angular 19](https://angular.io/)
 - TypeScript
 - SCSS
 - [Toastr](https://www.npmjs.com/package/ngx-toastr) para notificações
@@ -53,8 +53,8 @@ O projeto segue uma **arquitetura em camadas**, promovendo **separação de resp
 ## 📋 Requisitos
 
 - [.NET SDK 9.0](https://dotnet.microsoft.com/en-us/download/dotnet/9.0)
-- [Node.js 18+](https://nodejs.org/)
-- Angular CLI 17+
+- [Node.js 22+](https://nodejs.org/)
+- Angular CLI 19+
 - SQL Server (LocalDB ou instância completa)
 - IDEs recomendadas: Visual Studio 2022 ou VS Code
 
@@ -172,7 +172,6 @@ O sistema utiliza **JWT (JSON Web Tokens)** para autenticação segura:
 - Criar e salvar programas favoritos
 - Utilizar programas predefinidos
 - Personalizar tempo e potência para diferentes alimentos
-- Visualizar histórico de aquecimentos anteriores
 
 ---
 
