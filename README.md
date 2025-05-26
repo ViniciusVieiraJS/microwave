@@ -82,7 +82,7 @@ O projeto segue uma **arquitetura em camadas**, promovendo **separação de resp
       b7f3e8c2a1d4f6e9b0c5a2e7d8f1c3b6a4e9d2c7b1f5e3a8c6d0b2f4e7a1c9d3
       ```
 
-# Caso não esteja utilizando Visual Studio, é necessário baixar SQL Server Express caso deseje rodar localmente
+# Para esta string de conexão, é necessário baixar SQL Server Express:
    -Download: https://www.microsoft.com/pt-br/download/details.aspx?id=104781
 
 3. **Execute as migrações**
@@ -96,6 +96,7 @@ O projeto segue uma **arquitetura em camadas**, promovendo **separação de resp
 
 4. **Inicie o servidor**
    ```bash
+   cd Microwave.WebHost
    dotnet run
    ```
    > A API estará disponível em: `http://localhost:5204`
@@ -106,7 +107,7 @@ O projeto segue uma **arquitetura em camadas**, promovendo **separação de resp
 
 1. **Instale as dependências**
    ```bash
-   cd microwave/frontend
+   cd frontend/microwave-app
    npm install
    npm install -g @angular/cli
    ```
