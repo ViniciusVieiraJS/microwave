@@ -43,6 +43,15 @@ usedHeatingCharacters: string[] = ['.', '*', '}', '#', '|', '=']
       this.toastrService.error('Preencha todos os campos corretamente.');
       return;
     }
+
+    if(this.program.powerLevel < 1 || this.program.powerLevel > 10) {
+      this.toastrService.error('O nível de potência deve estar entre 1 e 10.');
+      return;
+    }
+    if(this.program.heatingCharacter.length !== 1) {
+      this.toastrService.error('O caractere de aquecimento deve conter apenas um caractere.');
+      return;
+    }
     if(this.usedHeatingCharacters.includes(this.program.heatingCharacter)) {
       this.toastrService.error('Esse caractere já está em uso. Escolha outro.');
       return;

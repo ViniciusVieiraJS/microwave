@@ -129,7 +129,6 @@ export class HeatingOptionsComponent implements OnInit {
   }
 
   deleteOption(id: number) {
-    debugger
     this.heatingProgramService.deleteProgram(id).subscribe(
       (response) => {
         this.toastrService.success(`Programa excluído com sucesso!`, 'Sucesso');

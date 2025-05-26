@@ -10,7 +10,6 @@ export class MicrowaveHeatingService {
   constructor(private http: HttpClient ) { }
 
   startHeating(microwaveHeating: MicrowaveHeating) : any {
-    debugger;
     return this.http.post('http://localhost:5204/api/microwave/start', microwaveHeating);
   }
 

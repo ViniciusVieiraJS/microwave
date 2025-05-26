@@ -20,7 +20,6 @@ export class UserRegistrationComponent {
   constructor(private userRegistrationService: UserRegistrationService, private toastrService: ToastrService, private router: Router) { }
 
   register(): void {
-    debugger
     this.userRegistrationService.register({ username: this.username, password: this.password }).subscribe({
       next: (response) => {
         this.toastrService.success(response.message || 'Cadastro bem-sucedido!');
