@@ -124,7 +124,7 @@ O projeto segue uma **arquitetura em camadas**, promovendo **separação de resp
 
 1. Acesse `http://localhost:4200` no navegador para acessar a interface do micro-ondas. Você deve se autenticar para utilizar as funcionalides.
 2. Acesse o campo de registro, insira seus dados e confirme os dados.
-3. Faça login com as credenciais padrão:
+3. Faça login com as credenciais escolhidas:
    - **Usuário:** `usuario`
    - **Senha:** `senha`
 4. Após o login, você terá acesso à interface digital do micro-ondas.
